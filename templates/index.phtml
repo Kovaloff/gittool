@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Git Dev Tool</title>
+    <link href='css/app.css' rel='stylesheet' type='text/css'>
+    <link href='css/sweetalert.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Git Dev Tool</h1>
+    </header>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12 current_branch">
+                    <p class="bg-primary">
+                        Current Branch: <span id="current_branch"><?= $active_branch ?></span>
+                    </p>
+                </div>
+            </div>
+            <h2 class="text-danger">Repository Status</h2>
+            <p class="lead"><?= $status ?></p>
+            <p><a class="btn btn-lg btn-success status-button" href="#" role="button">Update Status</a></p>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" class="gitLogButton" href="#gitLog">Git Log</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 repository_reset">
+                        <button type="button" data-action="" class="reset-button btn btn-warning">Reset to latest
+                            commit
+                        </button>
+                    </div>
+                    <div class="col-md-6  col-sm-6 available_branches">
+                        <button type="button" data-action="" class="pull-button btn btn-primary">Pull latest changes
+                        </button>
+                    </div>
+                </div>
+                <div class="row center-block">
+                    <div class="col-md-2 col-md-offset-3 col-sm-4">
+                        <button type="button" data-action="" class="checkout-button btn btn-primary">Checkout to
+                        </button>
+                    </div>
+                    <div class="col-md-4 col-sm-8">
+                        <select id="remote-branches" class="selectpicker form-control col-md-8"
+                                data-style="btn-primary">
+                            <?php foreach ($remote_branches_list as $remote_branch): ?>
+                                <option
+                                    value="<?= $remote_branch ?>" <?= ($remote_branch == $active_branch) ? 'selected' : ''; ?>><?= $remote_branch ?></option>
+                            <?php endforeach; ?>
+
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
+            <div id="gitLog" class="tab-pane fade">
+                <p class="git-log-content">...</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src='js/app.js' type='text/javascript'></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
